@@ -31,7 +31,7 @@ package aesbridge
 // The ciphertext is the concatenation of the salt, nonce, ciphertext and
 // authentication tag produced by EncryptGCMBin.
 func Encrypt(data, passphrase any) (string, error) {
-    return EncryptGCM(data, passphrase)
+	return EncryptGCM(data, passphrase)
 }
 
 // DecryptGCM decrypts a base64-encoded string using AES-GCM.
@@ -41,5 +41,5 @@ func Encrypt(data, passphrase any) (string, error) {
 //
 // Returns the decrypted plaintext as a string, or an error if the decryption fails.
 func Decrypt(data, passphrase any) (string, error) {
-    return DecryptGCM(data, passphrase)
+	return DecryptGCM(data, passphrase)
 }

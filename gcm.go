@@ -1,9 +1,25 @@
-// Package aesbridge provides AES-GCM encryption.
 // This file is part of AesBridge - modern cross-language AES encryption library
 // Repository: https://github.com/mervick/aes-bridge
 //
 // Copyright Andrey Izman (c) 2018-2025 <izmanw@gmail.com>
-// Licensed under the MIT license.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
 
 package aesbridge
 
@@ -12,8 +28,9 @@ import (
     "crypto/cipher"
     "crypto/sha256"
     "encoding/base64"
-    "golang.org/x/crypto/pbkdf2"
     "errors"
+
+    "golang.org/x/crypto/pbkdf2"
 )
 
 func deriveKey(passphrase []byte, salt []byte) []byte {
@@ -26,7 +43,8 @@ func deriveKey(passphrase []byte, salt []byte) []byte {
 // @param passphrase: Encryption passphrase
 //
 // @return: Encrypted data in format: salt(16) + nonce(12) + ciphertext + tag(16)
-//          as a string, or an error if the decryption fails.
+//
+//    as a string, or an error if the decryption fails.
 func EncryptGCMBin(data, passphrase any) (string, error) {
     p, err := toBytes(passphrase)
     if err != nil {
@@ -59,7 +77,9 @@ func EncryptGCMBin(data, passphrase any) (string, error) {
 // Decrypts data encrypted with EncryptGCMBin.
 //
 // @param data: Encrypted data in format from EncryptGCMBin():
-//              salt(16) + nonce(12) + ciphertext + tag(16)
+//
+//    salt(16) + nonce(12) + ciphertext + tag(16)
+//
 // @param passphrase: passphrase used for encryption
 // @return: The decrypted plaintext as a string, or an error if the decryption fails.
 func DecryptGCMBin(data, passphrase any) (string, error) {
@@ -68,7 +88,7 @@ func DecryptGCMBin(data, passphrase any) (string, error) {
         return "", err
     }
     if len(raw) < 44 {
-        return "", errors.New("Data too short")
+        return "", errors.New("data too short")
     }
 
     p, err := toBytes(passphrase)

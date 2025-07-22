@@ -42,7 +42,7 @@ func fromHexChar(c byte) (byte, bool) {
 // buffer.
 func AppendEncode(dst, src []byte) []byte {
     for _, v := range src {
-        dst = append(dst, hextable[v>>4], hextable[v&0x0f)
+        dst = append(dst, hextable[v>>4], hextable[v&0x0f])
     }
     return dst
 }

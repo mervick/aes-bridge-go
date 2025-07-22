@@ -1,6 +1,6 @@
 # AesBridge GO
 
-![CI Status](https://github.com/mervick/aes-bridge-python/actions/workflows/go-tests.yml/badge.svg)
+![CI Status](https://github.com/mervick/aes-bridge-go/actions/workflows/go-tests.yml/badge.svg)
 
 
 **AesBridge** is a modern, secure, and cross-language **AES** encryption library. It offers a unified interface for encrypting and decrypting data across multiple programming languages. Supports **GCM**, **CBC**, and **legacy AES Everywhere** modes.
